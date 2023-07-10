@@ -1,9 +1,9 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-import connectToDatabase from './dbConnection'
-import userRoute from './routes/userRoute'
-import postRoute from './routes/postRoute'
+import connectToDatabase from './dbConnection.js'
+import userRoute from './routes/userRoute.js'
+import postRoute from './routes/postRoute.js'
 
 connectToDatabase()
 

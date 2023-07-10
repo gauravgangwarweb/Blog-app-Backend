@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import Post from "../models/postModel";
+import Post from "../models/postModel.js";
 
 //Create new post
 export const createPost = async (req, res) => {
