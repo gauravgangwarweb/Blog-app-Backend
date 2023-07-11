@@ -10,6 +10,13 @@ const userSchema = new mongoose.Schema({
         require: true,
         type: String
     },
+    publicId: {
+        type: String,
+    },
+    imageUrl: {
+        type: String,
+        required: true
+    },
     email: {
         require: true,
         type: String,
