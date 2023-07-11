@@ -6,11 +6,11 @@ import jwt from 'jsonwebtoken'
 //Create new user
 export const createUser = async (req, res) => {
     try {
-        const {firstName, lastName, email, password} = req.body;
+        const {firstName, lastName, publicId, imageUrl, email, password} = req.body;
         const hashedPassword = await bcrypt.hash(password, 8)
 
-        const user = await User.create({firstName, lastName, email, password: hashedPassword})
-        const data = {firstName: user.firstName, lastName: user.lastName, email: user.email, id: user._id}
+        const user = await User.create({firstName, lastName, publicId, imageUrl, email, password: hashedPassword})
+        const data = {firstName: user.firstName, lastName: user.lastName, imageUrl: user.imageUrl, email: user.email, id: user._id}
         res.status(201).json(data)
     } catch (error) {
         res.status(500).json({message: "Server error"})
@@ -21,7 +21,7 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const {userId} = req.params;
-        const {firstName, lastName, email, password} = req.body
+        const {firstName, lastName, publicId, imageUrl, email, password} = req.body
 
         const hashedPassword = await bcrypt.hash(password, 8)
 
@@ -72,7 +72,6 @@ export const getUserById = async (req, res) => {
             res.status(404).json({message: "User not found"})
          }
          const data = {
-            id: user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,

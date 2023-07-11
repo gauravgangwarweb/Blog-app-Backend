@@ -16,18 +16,19 @@ const postSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-        validate: {
-            validator: async (value) => {
-                const user = await mongoose.model('User').findById(value);
-                return user !== null
-            },
-            message: 'User does not exist'
-        }
     },
     body: {
         type: String,
         required: true
-    }
+    },
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Like'
+    }],
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 },
     { timestamps: true }
 )

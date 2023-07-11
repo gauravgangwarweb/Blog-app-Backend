@@ -1,10 +1,18 @@
 import { Model } from "mongoose";
 import Post from "../models/postModel.js";
+import User from "../models/userModel.js";
 
 //Create new post
 export const createPost = async (req, res) => {
     try {
         const {title, publicId, imageUrl, userId, body} = req.body
+
+        //check if the user exist
+        const user = await User.findById(userId)
+        if(!user){
+            return res.status(404).json({message: "User does not exiat"})
+        }
+
         const post = await Post.create({title, publicId, imageUrl, userId, body})
         res.status(201).json({message: "Post created🎉🎉"})
     } catch (error) {
