@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import { json } from "express";
 import jwt from 'jsonwebtoken'
 
+
 //Create new user
 export const createUser = async (req, res) => {
     try {
