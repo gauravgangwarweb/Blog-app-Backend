@@ -1,6 +1,7 @@
 import Like from "../models/likeModel.js";
 import Post from "../models/postModel.js";
 
+
 export const addLike = async (req, res) => {
     try {
         const { postId, userId } = req.body

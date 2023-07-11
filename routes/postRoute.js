@@ -3,6 +3,7 @@ import { createPost, getAllPost, getPostById, updatePost, deletePost } from '../
 import { addComment } from '../controllers/commentController.js'
 import { addLike } from '../controllers/likeController.js'
 
+
 const router = express.Router()
 
 router.post('/post/new', createPost)

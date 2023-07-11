@@ -2,6 +2,7 @@ import { Model } from "mongoose";
 import Post from "../models/postModel.js";
 import User from "../models/userModel.js";
 
+
 //Create new post
 export const createPost = async (req, res) => {
     try {
