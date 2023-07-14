@@ -13,6 +13,10 @@ export const addComment = async (req, res) => {
             return res.status(404).json({error: "Post not found"})
         }
 
+        if (JSON.stringify(req.decodedToken.user) !== JSON.stringify(post.userId)) {
+            return res.status(401).json({ error: 'Unauthorized access ddd' });
+        }
+
         const comment = new Comment({
             postId,
             userId,
@@ -31,13 +35,13 @@ export const addComment = async (req, res) => {
 }
 
 //delete comment
-const deleteComment = async (req, res) => {
+export const deleteComment = async (req, res) => {
     try {
         const { postId, commentId } = req.params
-        const { userId } = req.body
 
         //checking if the post exist
         const post = await Post.findById(postId)
+        
         if(!post) {
             return res.status(404).json({message: "Post not found"})
         }
@@ -49,8 +53,8 @@ const deleteComment = async (req, res) => {
         }
 
         //check if the user is owner of comment
-        if(comment.userId.toString() !== userId) {
-            return res.status(401).json({message: "You are not authorized to delete this comment"})
+        if (JSON.stringify(req.decodedToken.user) !== JSON.stringify(post.userId)) {
+            return res.status(401).json({ error: 'Unauthorized access ddd' });
         }
 
         //removing the comment from post array
