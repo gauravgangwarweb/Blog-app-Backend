@@ -25,7 +25,7 @@ export const createPost = async (req, res) => {
 export const getAllPost = async (req, res) => {
     try {
         const posts = await Post.find()
-        res.json(posts)
+        res.status(201).json({status: "SUCCESS", data: posts})
     } catch (error) {
         res.status(500).json({message: error})
     }
