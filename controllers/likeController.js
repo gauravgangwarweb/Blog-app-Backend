@@ -13,6 +13,10 @@ export const addLike = async (req, res) => {
             res.status(404).json({message: "Post not found"})
         }
         
+        if (JSON.stringify(req.decodedToken.user) !== JSON.stringify(post.userId)) {
+            return res.status(401).json({ error: 'Unauthorized access ddd' });
+        }
+
         const like = new Like({
             postId,
             userId
