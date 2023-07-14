@@ -1,21 +1,18 @@
 import jwt from 'jsonwebtoken'
 
-
 const auth = (req, res, next) => {
-    const token = req.headers['authorization'];
-    if (!token) {
-        return res.status(401).json({ message: 'Unauthorized: Missing token' });
+    try {
+        // Verify the JWT token from the request headers
+        const token = req.headers.authorization;
+        const decodedToken = jwt.verify(token, process.env.SECRET);
+
+        // Set the decoded token on the request object for future use
+        req.decodedToken = decodedToken;
+        
+        next(); // Call the next middleware or endpoint handler
+    } catch (error) {
+        res.status(401).json({ error: 'Unauthorized access' });
     }
-
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: 'Invalid token' });
-        }
-
-        req.user = decoded;
-
-        next();
-    });
 };
 
 export default auth;
