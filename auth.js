@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
         
         next(); // Call the next middleware or endpoint handler
     } catch (error) {
-        res.status(401).json({ error: 'Unauthorized access' });
+        res.status(401).json({ error: 'Unauthorized access vv' });
     }
 };
 

@@ -34,14 +34,6 @@ const postSchema = new mongoose.Schema({
     { timestamps: true }
 )
 
-postSchema.set('toJSON', {
-    transform: function (doc, ret) {
-        delete ret.userId;
-        return ret;
-    },
-});
-
-
 const Post = mongoose.model('Post', postSchema)
 
 export default Post
