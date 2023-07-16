@@ -13,10 +13,11 @@ const userSchema = new mongoose.Schema({
     },
     publicId: {
         type: String,
+        default: "admin"
     },
     imageUrl: {
         type: String,
-        required: true
+        default: "https://res.cloudinary.com/dz27v8vsy/image/upload/v1689497760/defauktadmin_llhv43.jpg"
     },
     email: {
         require: true,
