@@ -39,7 +39,7 @@ export const getAllPost = async (req, res) => {
 export const getPostById = async (req, res) => {
     try {
         const {id} = req.params
-        const post = await Post.findById(id).populate('likes').populate('comments')
+        const post = await Post.findById(id).populate('userId').populate('likes').populate('comments')
 
 
         if(!post) {
@@ -56,7 +56,7 @@ export const getPostById = async (req, res) => {
             comments: post.comments
         }
 
-        res.status(201).json({ status: "SUCCESS", data: postData})
+        res.status(201).json({ status: "SUCCESS", data: post})
     } catch (error) {
         res.status(500).json({message: error})
     }
