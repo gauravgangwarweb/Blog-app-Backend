@@ -32,12 +32,6 @@ const userSchema = new mongoose.Schema({
     }
 )
 
-userSchema.virtual('posts', {
-    ref: 'Post',
-    localField: '_id',
-    foreignField: 'userId',
-});
-
 userSchema.set('toJSON', {
     transform: function (doc, ret) {
         delete ret.password;
