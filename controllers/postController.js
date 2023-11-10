@@ -28,7 +28,7 @@ export const createPost = async (req, res) => {
 //get all post
 export const getAllPost = async (req, res) => {
     try {
-        const posts = await Post.find()
+        const posts = await Post.find().populate("user")
         res.status(201).json({status: "SUCCESS", data: posts})
     } catch (error) {
         res.status(500).json({message: error})
